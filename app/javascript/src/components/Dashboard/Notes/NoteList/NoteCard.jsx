@@ -16,8 +16,8 @@ export const NoteCard = ({ handelDeleteClick, handleEditClick, note }) => (
       <div className="flex w-full justify-between">
         <Typography style="h4">{note.title}</Typography>
         <Dropdown buttonStyle="text" icon={MenuVertical}>
-          <li onClick={() => handleEditClick()}>Edit</li>
-          <li onClick={() => handelDeleteClick()}>Delete</li>
+          <li onClick={() => handleEditClick(note)}>Edit</li>
+          <li onClick={() => handelDeleteClick(note.id)}>Delete</li>
         </Dropdown>
       </div>
       <Typography className="text-gray-500" style="body2">
