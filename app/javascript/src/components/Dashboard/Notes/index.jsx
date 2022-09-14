@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
 
+// @ts-ignore
 import EmptyNotesListImage from "images/EmptyNotesList";
-import { Delete } from "neetoicons";
+// @ts-ignore
 import { Button, PageLoader } from "neetoui";
-import { Container, Header, SubHeader } from "neetoui/layouts";
+// @ts-ignore
+import { Container, Header } from "neetoui/layouts";
 
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
-import DeleteAlert from "./DeleteAlert";
+import Menu from "./Menu";
+import NotesList from "./NoteList";
 import NewNotePane from "./Pane/Create";
-import Table from "./Table";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
-  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
   const [notes, setNotes] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
     fetchNotes();
@@ -30,6 +31,7 @@ const Notes = () => {
       const { data } = await notesApi.fetch();
       setNotes(data.notes);
     } catch (error) {
+      // @ts-ignore
       logger.error(error);
     } finally {
       setLoading(false);
@@ -40,63 +42,51 @@ const Notes = () => {
     return <PageLoader />;
   }
 
+  const handleDeleteClick = () => {};
+
+  const handleEditClick = () => {};
+
   return (
-    <Container>
-      <Header
-        title="Notes"
-        actionBlock={
-          <Button
-            icon="ri-add-line"
-            label="Add New Note"
-            onClick={() => setShowNewNotePane(true)}
-          />
-        }
-        searchProps={{
-          value: searchTerm,
-          onChange: e => setSearchTerm(e.target.value),
-        }}
-      />
-      {notes.length ? (
-        <>
-          <SubHeader
-            rightActionBlock={
-              <Button
-                disabled={!selectedNoteIds.length}
-                icon={Delete}
-                label="Delete"
-                onClick={() => setShowDeleteAlert(true)}
-              />
-            }
-          />
-          <Table
-            fetchNotes={fetchNotes}
+    <>
+      <Menu showMenu={showMenu} />
+      <Container>
+        <Header
+          menuBarToggle={() => setShowMenu(!showMenu)}
+          title="All Notes"
+          actionBlock={
+            <Button
+              icon="ri-add-line"
+              label="Add New Note"
+              onClick={() => setShowNewNotePane(true)}
+            />
+          }
+          searchProps={{
+            value: searchTerm,
+            onChange: e => setSearchTerm(e.target.value),
+          }}
+        />
+        {notes.length ? (
+          <NotesList
+            handelDeleteClick={handleDeleteClick}
+            handleEditClick={handleEditClick}
             notes={notes}
-            setSelectedNoteIds={setSelectedNoteIds}
           />
-        </>
-      ) : (
-        <EmptyState
-          image={EmptyNotesListImage}
-          primaryAction={() => setShowNewNotePane(true)}
-          primaryActionLabel="Add New Note"
-          subtitle="Add your notes to send customized emails to them."
-          title="Looks like you don't have any notes!"
+        ) : (
+          <EmptyState
+            image={EmptyNotesListImage}
+            primaryAction={() => setShowNewNotePane(true)}
+            primaryActionLabel="Add New Note"
+            subtitle="Add your notes to send customized emails to them."
+            title="Looks like you don't have any notes!"
+          />
+        )}
+        <NewNotePane
+          fetchNotes={fetchNotes}
+          setShowPane={setShowNewNotePane}
+          showPane={showNewNotePane}
         />
-      )}
-      <NewNotePane
-        fetchNotes={fetchNotes}
-        setShowPane={setShowNewNotePane}
-        showPane={showNewNotePane}
-      />
-      {showDeleteAlert && (
-        <DeleteAlert
-          refetch={fetchNotes}
-          selectedNoteIds={selectedNoteIds}
-          setSelectedNoteIds={setSelectedNoteIds}
-          onClose={() => setShowDeleteAlert(false)}
-        />
-      )}
-    </Container>
+      </Container>
+    </>
   );
 };
 
