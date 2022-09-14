@@ -10,14 +10,20 @@ import { Container, Header } from "neetoui/layouts";
 import notesApi from "apis/notes";
 import EmptyState from "components/Common/EmptyState";
 
+import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import NotesList from "./NoteList";
 import NewNotePane from "./Pane/Create";
+import EditNotePane from "./Pane/Edit";
 
 const Notes = () => {
   const [loading, setLoading] = useState(true);
   const [showNewNotePane, setShowNewNotePane] = useState(false);
+  const [showEditPane, setShowEditPane] = useState(false);
+  const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedNoteIds, setSelectedNoteIds] = useState([]);
+  const [selectedNote, setSelectedNote] = useState({});
   const [notes, setNotes] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -42,9 +48,15 @@ const Notes = () => {
     return <PageLoader />;
   }
 
-  const handleDeleteClick = () => {};
+  const handleDeleteClick = note => {
+    setSelectedNoteIds(note);
+    setShowDeleteAlert(true);
+  };
 
-  const handleEditClick = () => {};
+  const handleEditClick = note => {
+    setSelectedNote(note);
+    setShowEditPane(true);
+  };
 
   return (
     <>
@@ -85,6 +97,20 @@ const Notes = () => {
           setShowPane={setShowNewNotePane}
           showPane={showNewNotePane}
         />
+        <EditNotePane
+          fetchNotes={fetchNotes}
+          note={selectedNote}
+          setShowPane={setShowEditPane}
+          showPane={showEditPane}
+        />
+        {showDeleteAlert && (
+          <DeleteAlert
+            refetch={fetchNotes}
+            selectedNoteIds={selectedNoteIds}
+            setSelectedNoteIds={setSelectedNoteIds}
+            onClose={() => setShowDeleteAlert(false)}
+          />
+        )}
       </Container>
     </>
   );
