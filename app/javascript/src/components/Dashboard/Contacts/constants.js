@@ -1,9 +1,38 @@
 import React from "react";
 
+import * as yup from "yup";
+
 import { convertDateToStdFormat } from "utils/dayjs 4.31.02 PM";
 
 import Avatar from "./Table/Avatar";
 import RowActions from "./Table/RowActions";
+
+// Start of Form component constants. --------------------------------
+export const CONTACT_FORM_INITIAL_FORM_VALUES = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  role: "",
+};
+
+export const CONTACT_FORM_VALIDATION_SCHEMA = yup.object().shape({
+  firstName: yup.string().required("First Name is required"),
+  lastName: yup.string().required("Last Name is required"),
+  email: yup
+    .string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  role: yup.object().required("Role is required").nullable(),
+});
+
+export const ROLES = [
+  "UX designer",
+  "Tester",
+  "Analyst",
+  "Back-end developer",
+  "Front-end developer",
+];
+// End of Form Component Constants ------------------------------------
 
 // Start of Contact Table component constants -------------------------
 export const DUMMY_CONTACT_DATA = {
