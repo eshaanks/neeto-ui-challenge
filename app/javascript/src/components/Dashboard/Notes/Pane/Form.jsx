@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
+// @ts-ignore
 import { Button, Pane } from "neetoui";
-import { Input, Textarea } from "neetoui/formik";
+// @ts-ignore
+import { Input, Textarea, Select } from "neetoui/formik";
 
 import notesApi from "apis/notes";
 
-import { NOTES_FORM_VALIDATION_SCHEMA } from "../constants";
+import {
+  NOTES_FORM_VALIDATION_SCHEMA,
+  CONTACT_NAMES,
+  TAGS,
+} from "../constants";
 
 const NoteForm = ({ onClose, refetch, note, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -21,16 +27,21 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
       refetch();
       onClose();
     } catch (err) {
+      // @ts-ignore
       logger.error(err);
     }
   };
-
   return (
     <Formik
-      initialValues={note}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
+      initialValues={{
+        title: note.title,
+        description: note.description,
+        contact: "",
+        tag: "",
+      }}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
@@ -47,7 +58,33 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               className="w-full flex-grow-0"
               label="Description"
               name="description"
-              rows={8}
+              rows={1}
+            />
+            <Select
+              isClearable
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Assigned Contact"
+              name="contact"
+              placeholder="Select Role"
+              options={CONTACT_NAMES.map(contactName => ({
+                label: contactName,
+                value: contactName,
+              }))}
+            />
+            <Select
+              isClearable
+              isSearchable
+              required
+              className="w-full flex-grow-0"
+              label="Tag"
+              name="tag"
+              placeholder="Select Tag"
+              options={TAGS.map(tag => ({
+                value: tag,
+                label: tag,
+              }))}
             />
           </Pane.Body>
           <Pane.Footer>
