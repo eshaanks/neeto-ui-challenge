@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// @ts-ignore
 import { Alert } from "neetoui";
 
 import notesApi from "apis/notes";
@@ -20,6 +21,7 @@ const DeleteAlert = ({
       setSelectedNoteIds([]);
       refetch();
     } catch (error) {
+      // @ts-ignore
       logger.error(error);
       setDeleting(false);
     }
