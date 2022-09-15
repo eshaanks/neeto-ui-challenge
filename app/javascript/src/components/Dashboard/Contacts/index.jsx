@@ -24,7 +24,7 @@ const Contacts = () => {
           actionBlock={
             <Button
               icon="ri-add-line"
-              label="Add New Note"
+              label="Add New Contact"
               onClick={() => setShowNewContactPane(true)}
             />
           }
