@@ -1,9 +1,8 @@
 import React from "react";
 
-// @ts-ignore
 import { Table as NeetoUITable } from "neetoui";
 
-import { COLUMN_DATA, ROW_DATA } from "../constants";
+import { COLUMN_DATA, ROW_DATA } from "./ColumnRowDefinitions";
 
 const Table = () => (
   <NeetoUITable
@@ -11,7 +10,6 @@ const Table = () => (
     columnData={COLUMN_DATA}
     currentPageNumber={1}
     defaultPageSize={10}
-    handlePageChange={function noRefCheck() {}}
     rowData={ROW_DATA}
   />
 );

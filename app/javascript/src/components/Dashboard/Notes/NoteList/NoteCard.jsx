@@ -1,14 +1,9 @@
 import React from "react";
 
-// @ts-ignore
-import { Clock, MenuVertical } from "@bigbinary/neeto-icons";
-// @ts-ignore
+import { Clock, MenuVertical } from "neetoicons";
 import { Typography, Dropdown, Tag, Avatar, Tooltip } from "neetoui";
 
-import {
-  calculateCreatedDayAndTime,
-  calculateCreatedAgo,
-} from "utils/dayjs 4.31.02 PM";
+import { calculateCreatedAgo, calculateCreatedDayAndTime } from "../Utils";
 
 export const NoteCard = ({ handelDeleteClick, handleEditClick, note }) => (
   <div className="mt-4 w-full border-2 p-4 shadow">
