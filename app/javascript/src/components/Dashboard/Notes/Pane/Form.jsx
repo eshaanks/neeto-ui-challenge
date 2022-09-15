@@ -14,10 +14,16 @@ import {
 
 const NoteForm = ({ onClose, refetch, note, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
+
+  const convertNoteToFormFormat = note => ({
+    title: note.title,
+    description: note.description,
+    contact: null,
+    tags: [],
+  });
+
   const handleSubmit = async values => {
     try {
-      // eslint-disable-next-line no-console
-      console.log(values);
       if (isEdit) {
         await notesApi.update(note.id, values);
       } else {
@@ -33,7 +39,7 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
 
   return (
     <Formik
-      initialValues={note}
+      initialValues={convertNoteToFormFormat(note)}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
