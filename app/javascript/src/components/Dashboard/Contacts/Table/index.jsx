@@ -2,7 +2,7 @@ import React from "react";
 
 import { Table as NeetoUITable } from "neetoui";
 
-import { COLUMN_DATA, ROW_DATA } from "../constants";
+import { COLUMN_DATA, ROW_DATA } from "./ColumnRowDefinitions";
 
 const Table = () => (
   <NeetoUITable
