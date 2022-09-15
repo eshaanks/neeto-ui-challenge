@@ -1,6 +1,7 @@
 import React from "react";
 
-import { MenuHorizontal } from "neetoicons";
+import { MenuHorizontal } from "@bigbinary/neeto-icons";
+// @ts-ignore
 import { Dropdown } from "neetoui";
 
 const RowActions = () => (

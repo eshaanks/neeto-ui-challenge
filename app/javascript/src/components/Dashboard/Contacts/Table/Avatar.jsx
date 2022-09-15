@@ -1,5 +1,6 @@
 import React from "react";
 
+// @ts-ignore
 import { Avatar as NeetoUIAvatar, Typography } from "neetoui";
 
 const Avatar = ({ name }) => (

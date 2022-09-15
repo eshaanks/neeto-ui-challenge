@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
+// @ts-ignore
 import { Button } from "neetoui";
+// @ts-ignore
 import { Container, Header } from "neetoui/layouts";
 
 import Menu from "./Menu";
@@ -19,12 +21,12 @@ const Contacts = () => {
       <Menu showMenu={showMenu} />
       <Container>
         <Header
-          menuBarToggle={() => setShowMenu(prevState => !prevState)}
+          menuBarToggle={() => setShowMenu(!showMenu)}
           title="All Contacts"
           actionBlock={
             <Button
               icon="ri-add-line"
-              label="Add New Contact"
+              label="Add New Note"
               onClick={() => setShowNewContactPane(true)}
             />
           }

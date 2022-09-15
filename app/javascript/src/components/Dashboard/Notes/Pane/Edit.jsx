@@ -7,13 +7,6 @@ import Form from "./Form";
 const EditNotePane = ({ fetchNotes, showPane, setShowPane, note }) => {
   const onClose = () => setShowPane(false);
 
-  const convertNoteToFormFormat = note => ({
-    title: note.title,
-    description: note.description,
-    contact: null,
-    tags: [],
-  });
-
   return (
     <Pane isOpen={showPane} onClose={onClose}>
       <Pane.Header>
@@ -21,12 +14,7 @@ const EditNotePane = ({ fetchNotes, showPane, setShowPane, note }) => {
           Edit Note
         </Typography>
       </Pane.Header>
-      <Form
-        isEdit
-        note={convertNoteToFormFormat(note)}
-        refetch={fetchNotes}
-        onClose={onClose}
-      />
+      <Form isEdit note={note} refetch={fetchNotes} onClose={onClose} />
     </Pane>
   );
 };

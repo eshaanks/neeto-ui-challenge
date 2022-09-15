@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
+// @ts-ignore
 import { Pane, Button, Toastr } from "neetoui";
+// @ts-ignore
 import { Input, Select } from "neetoui/formik";
 
 import {
@@ -12,7 +14,6 @@ import {
 
 const ContactForm = ({ onClose }) => {
   const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = () => {
     onClose();
     Toastr.success("Contact added successfully.");
@@ -50,6 +51,7 @@ const ContactForm = ({ onClose }) => {
               label="Email"
               name="email"
               placeholder="Enter your email address"
+              type="email"
             />
             <Select
               isClearable
@@ -80,7 +82,6 @@ const ContactForm = ({ onClose }) => {
               label="Cancel"
               size="large"
               style="text"
-              type="reset"
               onClick={onClose}
             />
           </Pane.Footer>
