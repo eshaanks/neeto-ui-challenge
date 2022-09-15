@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
 import { Formik, Form } from "formik";
-// @ts-ignore
 import { Button, Pane } from "neetoui";
-// @ts-ignore
 import { Input, Textarea, Select } from "neetoui/formik";
 
 import notesApi from "apis/notes";
@@ -16,9 +14,10 @@ import {
 
 const NoteForm = ({ onClose, refetch, note, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
-
   const handleSubmit = async values => {
     try {
+      // eslint-disable-next-line no-console
+      console.log(values);
       if (isEdit) {
         await notesApi.update(note.id, values);
       } else {
@@ -31,17 +30,13 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
       logger.error(err);
     }
   };
+
   return (
     <Formik
+      initialValues={note}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={NOTES_FORM_VALIDATION_SCHEMA}
-      initialValues={{
-        title: note.title,
-        description: note.description,
-        contact: "",
-        tag: "",
-      }}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
@@ -67,7 +62,7 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               className="w-full flex-grow-0"
               label="Assigned Contact"
               name="contact"
-              placeholder="Select Role"
+              placeholder="Select Contact"
               options={CONTACT_NAMES.map(contactName => ({
                 label: contactName,
                 value: contactName,
@@ -75,12 +70,13 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
             />
             <Select
               isClearable
+              isMulti
               isSearchable
               required
               className="w-full flex-grow-0"
-              label="Tag"
-              name="tag"
-              placeholder="Select Tag"
+              label="Tags"
+              name="tags"
+              placeholder="Select Tags"
               options={TAGS.map(tag => ({
                 value: tag,
                 label: tag,
@@ -102,6 +98,7 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               label="Cancel"
               size="large"
               style="text"
+              type="reset"
               onClick={onClose}
             />
           </Pane.Footer>

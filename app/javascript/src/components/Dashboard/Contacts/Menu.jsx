@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 
-// @ts-ignore
-// @ts-ignore
-import { Search, Plus, Settings } from "@bigbinary/neeto-icons";
-// @ts-ignore
+import { Search, Plus, Settings } from "neetoicons";
 import { Typography } from "neetoui";
-// @ts-ignore
 import { MenuBar } from "neetoui/layouts";
 
 const Menu = ({ showMenu }) => {
   const [isSearchCollapsed, setIsSearchCollapsed] = useState(true);
+
   return (
     <div className="flex">
       <MenuBar showMenu={showMenu} title="Contacts">
@@ -21,7 +18,7 @@ const Menu = ({ showMenu }) => {
           iconProps={[
             {
               icon: Search,
-              onClick: () => setIsSearchCollapsed(!isSearchCollapsed),
+              onClick: () => setIsSearchCollapsed(prevState => !prevState),
             },
           ]}
         >
