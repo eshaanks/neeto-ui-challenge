@@ -14,8 +14,8 @@ const camelize = str =>
 
 export const isPresent = R.pipe(R.either(R.isNil, R.isEmpty), R.not);
 
-export const buildSelectOption = optionsAsStringArray =>
-  optionsAsStringArray.map(optionAsString => ({
-    label: optionAsString,
-    value: camelize(optionAsString),
+export const buildSelectOption = values =>
+  values.map(value => ({
+    label: value,
+    value: camelize(value),
   }));
