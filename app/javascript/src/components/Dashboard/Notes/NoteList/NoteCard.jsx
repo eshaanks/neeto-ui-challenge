@@ -3,7 +3,7 @@ import React from "react";
 import { Clock, MenuVertical } from "neetoicons";
 import { Typography, Dropdown, Tag, Avatar, Tooltip } from "neetoui";
 
-import { calculateCreatedAgo, calculateCreatedDayAndTime } from "../Utils";
+import { calculateCreatedAgo, calculateCreatedDayAndTime } from "../utils";
 
 export const NoteCard = ({ handelDeleteClick, handleEditClick, note }) => (
   <div className="mt-4 w-full border-2 p-4 shadow">

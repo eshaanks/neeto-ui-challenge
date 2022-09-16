@@ -1,18 +1,11 @@
 import React from "react";
 
+import { MenuHorizontal } from "neetoicons";
+import { Dropdown } from "neetoui";
+
 import Avatar from "./Avatar";
-import RowActions from "./RowActions";
 
-import { convertDateToStdFormat } from "../utils";
-
-const DUMMY_CONTACT_DATA = {
-  name: "Ronald Reagan",
-  email: "ronald@gmail.com",
-  createdAt: convertDateToStdFormat(new Date()),
-};
-export const ROW_DATA = Array(100).fill(DUMMY_CONTACT_DATA);
-
-export const COLUMN_DATA = [
+export const getColumnData = setShowDeleteAlert => [
   {
     title: "NAME & ROLE",
     dataIndex: "name",
@@ -37,6 +30,11 @@ export const COLUMN_DATA = [
     dataIndex: "icon_button",
     key: "icon_button",
     width: "20%",
-    render: () => <RowActions />,
+    render: () => (
+      <Dropdown buttonStyle="text" icon={MenuHorizontal} strategy="fixed">
+        <li>Edit</li>
+        <li onClick={setShowDeleteAlert}>Delete</li>
+      </Dropdown>
+    ),
   },
 ];
