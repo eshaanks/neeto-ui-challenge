@@ -4,8 +4,8 @@ import { Alert, Toastr } from "neetoui";
 
 const DeleteAlert = ({ onClose }) => {
   const handleDelete = () => {
-    Toastr.success("Contact deleted successfully");
     onClose();
+    Toastr.success("Contact deleted successfully");
   };
 
   return (
