@@ -1,11 +1,15 @@
 import React from "react";
 
+import dayjs from "dayjs";
 import { MenuHorizontal } from "neetoicons";
 import { Dropdown } from "neetoui";
 
-import Avatar from "./Avatar";
+import Avatar from "./Table/Avatar";
 
-export const getColumnData = setShowDeleteAlert => [
+export const convertDateToStdFormat = date =>
+  dayjs(date).format("MMM, d, YYYY");
+
+export const getColumnDefintion = setShowDeleteAlert => [
   {
     title: "NAME & ROLE",
     dataIndex: "name",
