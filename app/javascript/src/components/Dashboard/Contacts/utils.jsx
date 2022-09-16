@@ -9,7 +9,7 @@ import Avatar from "./Table/Avatar";
 export const convertDateToStdFormat = date =>
   dayjs(date).format("MMM, d, YYYY");
 
-export const getColumnDefintion = setShowDeleteAlert => [
+export const getColumnDefintions = setShowDeleteAlert => [
   {
     title: "NAME & ROLE",
     dataIndex: "name",
