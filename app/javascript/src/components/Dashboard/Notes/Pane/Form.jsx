@@ -11,16 +11,10 @@ import {
   CONTACT_NAMES,
   TAGS,
 } from "../constants";
+import { convertNoteToFormFormat } from "../utils";
 
 const NoteForm = ({ onClose, refetch, note, isEdit }) => {
   const [submitted, setSubmitted] = useState(false);
-
-  const convertNoteToFormFormat = note => ({
-    title: note.title,
-    description: note.description,
-    contact: null,
-    tags: [],
-  });
 
   const handleSubmit = async values => {
     try {
@@ -68,11 +62,8 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               className="w-full flex-grow-0"
               label="Assigned Contact"
               name="contact"
+              options={CONTACT_NAMES}
               placeholder="Select Contact"
-              options={CONTACT_NAMES.map(contactName => ({
-                label: contactName,
-                value: contactName,
-              }))}
             />
             <Select
               isClearable
@@ -82,11 +73,8 @@ const NoteForm = ({ onClose, refetch, note, isEdit }) => {
               className="w-full flex-grow-0"
               label="Tags"
               name="tags"
+              options={TAGS}
               placeholder="Select Tags"
-              options={TAGS.map(tag => ({
-                value: tag,
-                label: tag,
-              }))}
             />
           </Pane.Body>
           <Pane.Footer>

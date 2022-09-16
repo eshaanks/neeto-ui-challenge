@@ -58,11 +58,8 @@ const ContactForm = ({ onClose }) => {
               className="w-full flex-grow-0"
               label="Role"
               name="role"
+              options={ROLES}
               placeholder="Select Role"
-              options={ROLES.map(role => ({
-                label: role,
-                value: role,
-              }))}
             />
           </Pane.Body>
           <Pane.Footer>

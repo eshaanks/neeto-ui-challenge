@@ -2,12 +2,13 @@ import React from "react";
 
 import { Table as NeetoUITable } from "neetoui";
 
-import { COLUMN_DATA, ROW_DATA } from "./ColumnRowDefinitions";
+import { ROW_DATA } from "../constants";
+import { getColumnDefintion } from "../utils";
 
-const Table = () => (
+const Table = ({ setShowDeleteAlert }) => (
   <NeetoUITable
     className="text-gray-500"
-    columnData={COLUMN_DATA}
+    columnData={getColumnDefintion(setShowDeleteAlert)}
     currentPageNumber={1}
     defaultPageSize={10}
     rowData={ROW_DATA}
