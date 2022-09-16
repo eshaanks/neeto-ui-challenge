@@ -11,13 +11,13 @@ const DUMMY_CONTACT_DATA = {
 
 export const ROW_DATA = Array(100).fill(DUMMY_CONTACT_DATA);
 
-export const ROLES = [
+export const ROLES = buildSelectOption([
   "UX designer",
   "Tester",
   "Analyst",
   "Back-end developer",
   "Front-end developer",
-].map(buildSelectOption);
+]);
 
 export const CONTACT_FORM_INITIAL_FORM_VALUES = {
   firstName: "",

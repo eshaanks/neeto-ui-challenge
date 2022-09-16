@@ -8,15 +8,15 @@ export const NOTES_FORM_INITIAL_FORM_VALUES = {
   tags: [],
 };
 
-export const CONTACT_NAMES = ["Mike", "Saul", "Walter"].map(buildSelectOption);
+export const CONTACT_NAMES = buildSelectOption(["Mike", "Saul", "Walter"]);
 
-export const TAGS = [
+export const TAGS = buildSelectOption([
   "Getting Started",
   "Onboarding",
   "User Flow",
   "UX",
   "Bugs",
-].map(buildSelectOption);
+]);
 
 export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
