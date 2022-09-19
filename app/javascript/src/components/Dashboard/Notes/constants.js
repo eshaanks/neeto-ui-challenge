@@ -1,4 +1,4 @@
-import { buildSelectOption } from "utils";
+import { buildSelectOptions } from "utils";
 import * as yup from "yup";
 
 export const NOTES_FORM_INITIAL_FORM_VALUES = {
@@ -8,9 +8,9 @@ export const NOTES_FORM_INITIAL_FORM_VALUES = {
   tags: [],
 };
 
-export const CONTACT_NAMES = buildSelectOption(["Mike", "Saul", "Walter"]);
+export const CONTACT_NAMES = buildSelectOptions(["Mike", "Saul", "Walter"]);
 
-export const TAGS = buildSelectOption([
+export const TAGS = buildSelectOptions([
   "Getting Started",
   "Onboarding",
   "User Flow",
