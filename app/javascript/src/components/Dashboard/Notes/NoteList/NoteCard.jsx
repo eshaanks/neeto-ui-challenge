@@ -6,7 +6,7 @@ import { Typography, Dropdown, Tag, Avatar, Tooltip } from "neetoui";
 import { calculateCreatedAgo, calculateCreatedDayAndTime } from "../utils";
 
 export const NoteCard = ({ handelDeleteClick, handleEditClick, note }) => (
-  <div className="mt-4 w-full border-2 p-4 shadow">
+  <div className="mt-4 w-full border p-4 shadow-md">
     <div>
       <div className="flex w-full justify-between">
         <Typography style="h4">{note.title}</Typography>
