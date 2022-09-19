@@ -1,4 +1,4 @@
-import { buildSelectOption } from "utils";
+import { buildSelectOptions } from "utils";
 import * as yup from "yup";
 
 import { convertDateToStdFormat } from "./utils";
@@ -11,7 +11,7 @@ const DUMMY_CONTACT_DATA = {
 
 export const ROW_DATA = Array(100).fill(DUMMY_CONTACT_DATA);
 
-export const ROLES = buildSelectOption([
+export const ROLES = buildSelectOptions([
   "UX designer",
   "Tester",
   "Analyst",
